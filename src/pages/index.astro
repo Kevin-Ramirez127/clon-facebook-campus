@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Facebook - log in or sign up">
+	<main class='flex flex-row justify-center items-center h-screen gap-x-52 flex-wrap'>
+		<section class='w-60 xs:w-96 flex flex-col justify-start items-start gap-y-4'>
+			<picture class='-m-8'>
+				<img src="images/logo.svg" alt="facebook logo" width='320'>
+			</picture>
+			<h2 class='text-2xl font-normal'>Connect with friends and the world around you on Facebook.</h2>
+		</section>
+		<section class='flex flex-col justify-center items-center md:-mt-24 lg:mt-0'>
+			<div class='w-60 xs:w-96 flex flex-col bg-white p-4 rounded-xl gap-y-5 shadow-lg'>
+				<form action="" class='w-full flex flex-col justify-center items-center gap-y-3'>
+					<div class='parent-input w-full h-12 flex flex-row justify-start items-center rounded-md px-3 py-4 border border-neutral-400'>
+						<input class='input outline-none w-full' type='text' name='credentials' placeholder='Email or phone number'>
+					</div>
+					<div class='parent-input w-full h-12 flex flex-row justify-start items-center rounded-md px-3 py-4 border border-neutral-400'>
+						<input class='input outline-none w-full' type='password' name='password' placeholder='Password' id='password'>
+						<img src='icons/visible.png' id='passwordImg' width='16' class='ml-3 cursor-pointer opacity-0 pointer-events-none' alt='toogle password icon' />
+					</div>
+
+					<input class='w-full h-12 rounded-md text-white font-bold text-lg bg-blue-600 text-center cursor-pointer' type="submit" value="Log In">
+				</form>
+				<a class='text-blue-600 text-sm flex justify-center' href="https://www.facebook.com/recover/initiate/">Forgot password?</a>
+				<div class='border-b border-solid border-neutral-300' />
+				<div class='flex justify-center'>
+					<a href="https://www.facebook.com/signup"><button class='h-12 rounded-md px-3 bg-[#42B72A] hover:bg-[#36A420] transition-colors text-white font-bold text-lg' type="button">Create new account</button></a>
+				</div>
+			</div>
+			<p class='text-sm mt-6'><strong><a href='https://www.facebook.com/pages/create/'>Create a Page</a></strong> for a celebrity, brand or business.</p>
+		</section>
+	</main>
+	<footer class='w-full flex flex-col gap-y-2 py-6 bg-white text-neutral-500 text-xs items-center'>
+		<div class='w-4/6 flex flex-row flex-wrap gap-3 justify-center items-center'>
+			<span>English (US)</span>
+			<span>Español</span>
+			<span>Português (Brasil)</span>
+			<span>Français (France)</span>
+			<span>Italiano</span>
+			<span>Deutsch</span>
+			<span>Bahasa Indonesia</span>
+			<span>العربية</span>
+			<span>हिन्दी</span>
+			<span>中文(简体)</span>
+			<span>日本語</span>
+			<span class='px-3 bg-neutral-100 text-base font-extrabold border border-neutral-300 cursor-pointer'>+</span>
+			<div class='w-full border-b border-solid border-neutral-300' />
+		</div>
+		<div class='w-4/6 flex flex-row flex-wrap gap-x-3 justify-center items-center'>
+			<span>Sign Up</span>
+			<span>Log In</span>
+			<span>Messenger</span>
+			<span>Facebook</span>
+			<span>Lite</span>
+			<span>Video</span>
+			<span>Places</span>
+			<span>Games</span>
+			<span>Marketplace</span>
+			<span>Meta Pay</span>
+			<span>Meta Store</span>
+			<span>Meta Quest</span>
+			<span>Imagine with Meta AI</span>
+			<span>Instagram</span>
+
+			<span>Threads</span>
+			<span>Fundraisers</span>
+			<span>Services</span>
+			<span>Voting Information Center</span>
+			<span>Privacy Policy</span>
+			<span>Privacy Center</span>
+			<span>Groups</span>
+			<span>About</span>
+			<span>Create ad</span>
+			<span>Create Page</span>
+			<span>Developers</span>
+			<span>Careers</span>
+
+			<span>Cookies</span>
+			<span>Ad choices</span>
+			<span>Terms</span>
+			<span>Help</span>
+			<span>Contact Uploading & Non-Users</span>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	.parent-input {
+		transition-property: border, box-shadow;
+		transition-duration: 300ms;
+	}
+	.parent-input:has(.input:focus) {
+		border: 1px solid #0866FF;
+		box-shadow: 0px 0px 0px 2px #E7F3FF;
+	}
+	.input:focus::placeholder {
+		opacity: .6;
+	}
+</style>
+
+<script>
+		// Media
+		import showIcon from '../../public/icons/visible.png';
+		import hiddeIcon from '../../public/icons/hidden.png';
+
+		// Focus email or phone input when page is loaded
+		window.addEventListener('load', () => document.querySelector('input').focus())
+
+		// Hide icon when password is empty and show if it have data
+		const passElement = document.querySelector('#password') as HTMLInputElement;
+		const passImg = document.querySelector('#passwordImg') as HTMLImageElement;
+		passElement.addEventListener('input', (e)=>{
+			const target = e.target as HTMLInputElement;
+			if(target.value.length === 0) {
+				passImg.classList.replace('opacity-100', 'opacity-0');
+				passImg.classList.add('pointer-events-none');
+			} else {
+				passImg.classList.replace('opacity-0', 'opacity-100');
+				passImg.classList.remove('pointer-events-none');
+			}
+		});
+		// Toogle between text and password input type
+		passImg.addEventListener('click', () => {
+			if(passElement.type === 'text') {
+				passElement.type = 'password';
+				passImg.src = showIcon.src;
+			} else {
+				passElement.type = 'text';
+				passImg.src = hiddeIcon.src;
+			}
+		});
+</script>
